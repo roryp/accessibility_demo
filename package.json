@@ -1,0 +1,26 @@
+{
+  "name": "hydrafusion-a11y-workshop",
+  "version": "1.0.0",
+  "description": "Workshop: fixing WCAG accessibility issues with the GitHub Copilot SDK + HydraFusion, with cost tracking",
+  "scripts": {
+    "reset": "node src/reset-site.mjs",
+    "reset:all": "node src/reset-site.mjs --reports",
+    "models": "node src/01-models-and-prices.mjs",
+    "test:a11y": "node src/02-test-site.mjs",
+    "audit": "node src/03-hydrafusion-audit.mjs",
+    "fix": "node src/04-hydrafusion-fix.mjs",
+    "cost": "node src/05-cost-report.mjs",
+    "workshop": "npm run setup && npm run reset:all && npm run models && npm run test:a11y -- --label baseline && npm run audit && npm run fix && npm run cost",
+    "setup": "playwright install --only-shell chromium"
+  },
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@github/copilot-sdk": "1.0.18",
+    "playwright": "1.63.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}
